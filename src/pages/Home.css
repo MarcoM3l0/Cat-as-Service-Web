@@ -1,0 +1,75 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+img{
+    margin: 20px;
+}
+
+
+h2{
+    margin: 10px;
+}
+
+.floating-image {
+    
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translate(0, -90%);
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .floating-image:hover {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translate(0, -90%);
+    }
+    50% {
+      transform: translate(0, -85%);
+    }
+    100% {
+      transform: translate(0, -90%);
+    }
+  }
+
+.link-container {
+    display: flex;
+    justify-content: center;
+}
+  
+.btn-Buscar, .btn-favoritos {
+    margin: 10px;
+    text-decoration: none;
+
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-Buscar:hover, .btn-favoritos:hover {
+    transform: scale(1.1);
+}

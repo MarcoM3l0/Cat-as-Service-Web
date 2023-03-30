@@ -1,51 +1,56 @@
-.container-Racas{
+.Container{
+    
     padding: 0 20px;
-    height: 98.5vh;
+    height: 98.55vh;
 }
 
 .Descricao-page{
+
     color: rgb(32, 32, 32);
-    font-size: 17.5px;
+    font-size: 18px;
     margin-left: 5px;
     padding: 6px;
 }
 
-.container-busca{
-    padding-top: 60px;
+.container-favoritos{
+
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+
 }
 
-.cbx-buscar label{
-    margin-right: 10px;
+.lista-favoritos{
+
+    margin-top: 30px;
+
+    width: 50%;
+    height: 400px;
+
+    background-color: #e7e7e7;
+    color: #000;
+    font-size: 20px;
+
+    border: 1.5px solid #5e5e5e;
+    border-radius: 6px;
 }
 
-button {
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    outline: none;
-  }
+.botoes-Favoritos{
 
-.botoes{
     position: absolute;
-    top: 75%;
-    left: 45%;
+    top: 100%;
+    left: 60%;
 }
 
-.botoes button{
+.botoes-Favoritos button{
+
     margin: 6px;
 }
 
-.btn-Voltar, .btn-buscar, .btn-Favoritar{
+.btn-Voltar, .btn-Excluir-Favoritar {
+
     margin: 10px;
     text-decoration: none;
 
@@ -68,6 +73,7 @@ button {
     transition: all 0.3s ease-in-out;
 }
 
-.btn-Voltar:hover, .btn-buscar:hover, .btn-Favoritar:hover{
+.btn-Voltar:hover, .btn-Excluir-Favoritar:hover{
+
     transform: scale(1.1);
 }

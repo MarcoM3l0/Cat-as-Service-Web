@@ -6,13 +6,17 @@ import MeusFavoritos from './pages/MeusFavoritos'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path='/' Component={Home}/>
-        <Route exact path='/buscar-racas' Component={BuscarRacas}/>
-        <Route exact path='/meus-favoritos' Component={MeusFavoritos}/>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/' Component={Home}/>
+          <Route exact path='/buscar-racas' Component={BuscarRacas}/>
+          <Route exact path='/meus-favoritos' Component={MeusFavoritos}/>
+        </Routes>
+      </BrowserRouter>
+      <p className='footerP'>→ @marco_m3l0 ←</p>
+    </div>
+    
   )
 }
 

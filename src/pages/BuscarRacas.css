@@ -1,0 +1,73 @@
+.container-Racas{
+    padding: 0 20px;
+    height: 98.5vh;
+}
+
+.Descricao-page{
+    color: rgb(32, 32, 32);
+    font-size: 17.5px;
+    margin-left: 5px;
+    padding: 6px;
+}
+
+.container-busca{
+    padding-top: 60px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cbx-buscar label{
+    margin-right: 10px;
+}
+
+button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+
+.botoes{
+    position: absolute;
+    top: 75%;
+    left: 45%;
+}
+
+.botoes button{
+    margin: 6px;
+}
+
+.btn-Voltar, .btn-buscar, .btn-Favoritar{
+    margin: 10px;
+    text-decoration: none;
+
+    appearance: none;
+    background-color: #e2e1e1;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-Voltar:hover, .btn-buscar:hover, .btn-Favoritar:hover{
+    transform: scale(1.1);
+}

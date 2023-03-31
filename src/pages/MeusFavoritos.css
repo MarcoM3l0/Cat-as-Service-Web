@@ -1,0 +1,79 @@
+.Container{
+    
+    padding: 0 20px;
+    height: 98.55vh;
+}
+
+.Descricao-page{
+
+    color: rgb(32, 32, 32);
+    font-size: 18px;
+    margin-left: 5px;
+    padding: 6px;
+}
+
+.container-favoritos{
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.lista-favoritos{
+
+    margin-top: 30px;
+
+    width: 50%;
+    height: 400px;
+
+    background-color: #e7e7e7;
+    color: #000;
+    font-size: 20px;
+
+    border: 1.5px solid #5e5e5e;
+    border-radius: 6px;
+}
+
+.botoes-Favoritos{
+
+    position: absolute;
+    top: 100%;
+    left: 60%;
+}
+
+.botoes-Favoritos button{
+
+    margin: 6px;
+}
+
+.btn-Voltar, .btn-Excluir-Favoritar {
+
+    margin: 10px;
+    text-decoration: none;
+
+    appearance: none;
+    background-color: #e2e1e1;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-Voltar:hover, .btn-Excluir-Favoritar:hover{
+
+    transform: scale(1.1);
+}

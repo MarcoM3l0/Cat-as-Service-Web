@@ -7,6 +7,8 @@ import Carregando from "../components/Carregando"
 import "./BuscarRacas.css"
 
 const BuscarRacas = () => {
+
+             /*Faz a comunicação com a API e traz os dados de cada raça de gato*/   
     const [breeds, setBreads] = useState([])
 
     useEffect(() => {
@@ -19,13 +21,17 @@ const BuscarRacas = () => {
             console.error(error);
         });
     }, [])
+    /*======================================================================================= */
 
-    const handleSubmit = (e) =>{
+            /* exibir os dados da raça selecionada*/
+    const [breedId, setBreedId] = useState('');
 
-        e.preventDefault()
+    const handleSelectChange = (e) => {
+        setBreedId(e.target.value);
+    }
 
-        console.log("Ok")
-
+    const handleSubmit = () =>{
+        console.log(breedId);
     }
 
     
@@ -40,10 +46,10 @@ const BuscarRacas = () => {
                     <div className="container-busca">
                         <div className="cbx-buscar">
                             <label for="racas">Raças do gato</label>
-                            <select id="racas" name="racas">
+                            <select onChange={handleSelectChange}>
                                 <option value="">Selecione uma Raça</option>
                                 {breeds.map(breed => (
-                                    <option key={breed.id} value={breed.name}>{breed.name}</option>
+                                    <option key={breed.id} value={breed.id}>{breed.name}</option>
                                 ))}
                             </select>
                         </div>
@@ -60,12 +66,12 @@ const BuscarRacas = () => {
 
                         <img className="image" src="../img/Cat-on-computer.jpg" height="210" width="360"/>
 
-                    </div>
-                    <div className="botoes">
-                        <Link className="btn-Voltar" to="/">Voltar</Link>
-                        <button className="btn-buscar" type="submit" onClick={handleSubmit}>Buscar</button>
-                        <button className="btn-Favoritar">Favoritar</button>
-                    </div>
+                        </div>
+                        <div className="botoes">
+                            <Link className="btn-Voltar" to="/">Voltar</Link>
+                            <button className="btn-buscar" onClick={() => handleSubmit(breedId)}>Buscar</button>
+                            <button className="btn-Favoritar">Favoritar</button>
+                        </div>
                 </div>}
             </div>
     )

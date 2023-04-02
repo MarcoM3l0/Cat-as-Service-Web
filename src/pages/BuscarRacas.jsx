@@ -8,10 +8,12 @@ import "./BuscarRacas.css"
 
 const apikey = import.meta.env.VITE_API_KEY
 const urlBusca = import.meta.env.VITE_SEARCH
+const urlFavourites = import.meta.env.VITE_FAVOURITES
 
 const BuscarRacas = () => {
 
-    const [buttonDisabled, setButtonDisabled] = useState(true)
+    const [buttonBuscarDisabled, setButtonBuscarDisabled] = useState(true)
+    const [buttoanFavoritoDisabled, setButtaonFavoritoDisabled] = useState(true)
 
 
     /*Faz a comunicação com a API e traz os dados de cada raça de gato*/  
@@ -28,20 +30,24 @@ const BuscarRacas = () => {
     }, [])
     /*======================================================================================= */
 
-    /* exibir os dados da raça selecionada*/
     const [breedId, setBreedId] = useState('');
+    
+    const handleSelectChange = (e) => {
+        const value = e.target.value
+        setBreedId(value);
+        setButtonBuscarDisabled(value === "");
+        if(value === ""){
+            setButtaonFavoritoDisabled(true)
+            setControle(false)
+        }
+    }
+
+    /* exibir os dados da raça selecionada*/
     const [breedTemperament, setBreedTemperament] = useState('');
     const [breedOrigin, setBreedOrigin] = useState('');
     const [breedDescription, setBreedDescription] = useState('');
     var [controle, setControle] = useState(false);
     
-
-
-    const handleSelectChange = (e) => {
-        const value = e.target.value
-        setBreedId(value);
-        setButtonDisabled(value === "");
-    }
 
     const handleSubmit = () =>{
 
@@ -53,9 +59,31 @@ const BuscarRacas = () => {
             setBreedOrigin(origin);
             setBreedDescription(description);
             setControle(true);
+            setButtaonFavoritoDisabled(false)
         }).catch(function (error) {
         console.error(error);
         });
+    }
+
+    /*F */
+    const handleSubmitFavouriting = () =>{
+        
+        const options = {
+            method: 'POST',
+            url: urlFavourites,
+            headers: {
+              'x-api-key': apikey,
+              'Content-Type': 'application/json'
+            },
+            data: {image_id: breedId}
+          };
+          
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+
     }
 
 
@@ -103,8 +131,19 @@ const BuscarRacas = () => {
                         </div>
                         <div className="botoes">
                             <Link className="btn-Voltar" to="/Cat-as-Service-Web">Voltar</Link>
-                            <button className={`btn-buscar ${buttonDisabled ? 'btn-disabled' : ''}`} disabled={buttonDisabled} onClick={() => handleSubmit(breedId)}>Buscar</button>
-                            <button className={`btn-Favoritar ${buttonDisabled ? 'btn-disabled' : ''}`} disabled={buttonDisabled}>Favoritar</button>
+                            <button 
+                                className={`btn-buscar ${buttonBuscarDisabled ? 'btn-disabled' : ''}`} 
+                                disabled={buttonBuscarDisabled} 
+                                onClick={handleSubmit}>
+                                    Buscar
+                            </button>
+                            <button 
+                                className={`btn-Favoritar ${buttoanFavoritoDisabled ? 'btn-disabled' : ''}`} 
+                                disabled={buttoanFavoritoDisabled}
+                                onClick={handleSubmitFavouriting} 
+                                >
+                                    Favoritar
+                            </button>
                         </div>
                 </div>
             }

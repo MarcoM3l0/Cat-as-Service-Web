@@ -6,14 +6,19 @@ import Carregando from "../components/Carregando"
 
 import "./BuscarRacas.css"
 
+const apikey = import.meta.env.VITE_API_KEY
+const urlBusca = import.meta.env.VITE_SEARCH
+
 const BuscarRacas = () => {
 
-             /*Faz a comunicação com a API e traz os dados de cada raça de gato*/   
-    const [breeds, setBreads] = useState([])
+    const [buttonDisabled, setButtonDisabled] = useState(true)
 
+
+    /*Faz a comunicação com a API e traz os dados de cada raça de gato*/  
+    const [breeds, setBreads] = useState([])
     useEffect(() => {
 
-        const options = {method: 'GET', url: 'https://api.thecatapi.com/v1/breeds'};
+        const options = {method: 'GET', url: urlBusca};
 
         axios.request(options).then(function (response) {
             setBreads(response.data) 
@@ -23,18 +28,36 @@ const BuscarRacas = () => {
     }, [])
     /*======================================================================================= */
 
-            /* exibir os dados da raça selecionada*/
+    /* exibir os dados da raça selecionada*/
     const [breedId, setBreedId] = useState('');
+    const [breedTemperament, setBreedTemperament] = useState('');
+    const [breedOrigin, setBreedOrigin] = useState('');
+    const [breedDescription, setBreedDescription] = useState('');
+    var [controle, setControle] = useState(false);
+    
+
 
     const handleSelectChange = (e) => {
-        setBreedId(e.target.value);
+        const value = e.target.value
+        setBreedId(value);
+        setButtonDisabled(value === "");
     }
 
     const handleSubmit = () =>{
-        console.log(breedId);
+
+        const options = {method: 'GET', url: `${urlBusca}/${breedId}`};
+
+        axios.request(options).then(function (response) {
+            const {temperament, origin, description} = response.data;
+            setBreedTemperament(temperament);
+            setBreedOrigin(origin);
+            setBreedDescription(description);
+            setControle(true);
+        }).catch(function (error) {
+        console.error(error);
+        });
     }
 
-    
 
     return (
         <div className="container-Racas">
@@ -45,7 +68,7 @@ const BuscarRacas = () => {
                     <hr />
                     <div className="container-busca">
                         <div className="cbx-buscar">
-                            <label for="racas">Raças do gato</label>
+                            <label for="racas"><b>Raças do gato</b></label>
                             <select onChange={handleSelectChange}>
                                 <option value="">Selecione uma Raça</option>
                                 {breeds.map(breed => (
@@ -54,13 +77,24 @@ const BuscarRacas = () => {
                             </select>
                         </div>
 
-                        <div className="resultado">
-                            <p>Temperamento: resultado...</p> 
-                            
-                            <p>Origem: resultado...</p> 
-                            
-                            <p>Descrição: resultado...</p>
-                            
+                        <div>
+                            {controle === false? 
+                                <div className="sem-resultado">
+                                    <p><b>Temperamento:</b> resultado...</p> 
+                                
+                                    <p><b>Origem:</b> resultado...</p> 
+                                    
+                                    <p><b>Descrição:</b> resultado...</p>
+                                </div>
+                                 :
+                                <div className="resultado">
+                                    <p><b>Temperamento:</b>  {breedTemperament}</p> 
+                                    
+                                    <p><b>Origem:</b> {breedOrigin}</p> 
+                                    
+                                    <p><b>Descrição:</b> {breedDescription}</p>
+                                </div>
+                                }
                         </div>
                             
 
@@ -68,12 +102,13 @@ const BuscarRacas = () => {
 
                         </div>
                         <div className="botoes">
-                            <Link className="btn-Voltar" to="/">Voltar</Link>
-                            <button className="btn-buscar" onClick={() => handleSubmit(breedId)}>Buscar</button>
-                            <button className="btn-Favoritar">Favoritar</button>
+                            <Link className="btn-Voltar" to="/Cat-as-Service-Web">Voltar</Link>
+                            <button className={`btn-buscar ${buttonDisabled ? 'btn-disabled' : ''}`} disabled={buttonDisabled} onClick={() => handleSubmit(breedId)}>Buscar</button>
+                            <button className={`btn-Favoritar ${buttonDisabled ? 'btn-disabled' : ''}`} disabled={buttonDisabled}>Favoritar</button>
                         </div>
-                </div>}
-            </div>
+                </div>
+            }
+        </div>
     )
 }
 

@@ -9,7 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' Component={Home}/>
+          <Route exact path='/Cat-as-Service-Web' Component={Home}/>
           <Route exact path='/buscar-racas' Component={BuscarRacas}/>
           <Route exact path='/meus-favoritos' Component={MeusFavoritos}/>
         </Routes>

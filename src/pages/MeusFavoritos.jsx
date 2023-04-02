@@ -13,7 +13,7 @@ const MeusFavoritos = () => {
                 <div className="lista-favoritos">
                 </div>
                 <div className="botoes-Favoritos">
-                    <Link className="btn-Voltar" to="/">Voltar</Link>
+                    <Link className="btn-Voltar" to="/Cat-as-Service-Web">Voltar</Link>
                     <button className="btn-Excluir-Favoritar">Excluir Favorito</button>
                 </div>
             </div>

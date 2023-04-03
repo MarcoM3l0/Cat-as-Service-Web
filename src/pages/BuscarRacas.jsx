@@ -70,12 +70,12 @@ const BuscarRacas = () => {
         
         const options = {
             method: 'POST',
-            url: urlFavourites,
+            url: `${urlFavourites}/`,
             headers: {
               'x-api-key': apikey,
               'Content-Type': 'application/json'
             },
-            data: {image_id: breedId}
+            data: {image_id: breedId, sub_id: 'user-123'}
           };
           
           axios.request(options).then(function (response) {

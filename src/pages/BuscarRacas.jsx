@@ -84,8 +84,7 @@ const BuscarRacas = () => {
 
         axios.request(optionsImg).then(function (response) {
             const data = response.data.map(({url}) => ({url}));
-            console.log(data)
-            setUrlImgCat(data)
+            setUrlImgCat(data[0].url)
         }).catch(function (error) {
             console.error(error);
             toast.error("Erro ao buscar dados da imagem!")
@@ -120,7 +119,6 @@ const BuscarRacas = () => {
         selectRef.current.value = '';
 
     }
-
 
     return (
         <div className="container-Racas">

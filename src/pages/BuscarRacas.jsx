@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Carregando from "../components/Carregando"
 
 import "./BuscarRacas.css"
@@ -28,6 +31,7 @@ const BuscarRacas = () => {
             setBreads(response.data) 
         }).catch(function (error) {
             console.error(error);
+            toast.error("Erro ao buscar dados da API!")
         });
     }, [])
     /*======================================================================================= */
@@ -48,8 +52,9 @@ const BuscarRacas = () => {
     const [breedTemperament, setBreedTemperament] = useState('');
     const [breedOrigin, setBreedOrigin] = useState('');
     const [breedDescription, setBreedDescription] = useState('');
-    const [urlImgCat, setUrlImgCat] = useState('../img/Cat-on-computer.jpg');
+    const [urlImgCat, setUrlImgCat] = useState('../src/assets/Cat-on-computer.jpg');
     const [id, setId] = useState('');
+    const [name, setName] = useState('');
     var [controle, setControle] = useState(false);
     
 
@@ -57,15 +62,17 @@ const BuscarRacas = () => {
 
         const options = {method: 'GET', url: `${urlBusca}/${breedId}`};
         axios.request(options).then(function (response) {
-            const {id, temperament, origin, description} = response.data;
+            const {id, name, temperament, origin, description} = response.data;
             setId(id)
+            setName(name)
             setBreedTemperament(temperament);
             setBreedOrigin(origin);
             setBreedDescription(description);
             setControle(true);
             setButtaonFavoritoDisabled(false)
         }).catch(function (error) {
-        console.error(error);
+            console.error(error);
+            toast.error("Erro ao buscar dados do gato selecionado!")
         });
 
 
@@ -80,7 +87,8 @@ const BuscarRacas = () => {
             console.log(data)
             setUrlImgCat(data)
         }).catch(function (error) {
-        console.error(error);
+            console.error(error);
+            toast.error("Erro ao buscar dados da imagem!")
         });
     }
 
@@ -99,14 +107,16 @@ const BuscarRacas = () => {
           
         axios.request(options).then(function (response) {
             console.log(response.data);
+            toast.success(`${name} adicionado com sucesso!`)
         }).catch(function (error) {
             console.error(error);
+            toast.error("Erro ao adicionar gato aos favoritos!")
         });
 
         setControle(false)
         setButtonBuscarDisabled(true)
         setButtaonFavoritoDisabled(true)
-        setUrlImgCat('../img/Cat-on-computer.jpg')
+        setUrlImgCat('../src/assets/Cat-on-computer.jpg')
         selectRef.current.value = '';
 
     }
@@ -114,6 +124,7 @@ const BuscarRacas = () => {
 
     return (
         <div className="container-Racas">
+            <ToastContainer />
             {breeds.length === 0 ? <Carregando/> : 
                 <div>
                     <h2 className="titulo">Encontre sua Raça Favorita</h2>

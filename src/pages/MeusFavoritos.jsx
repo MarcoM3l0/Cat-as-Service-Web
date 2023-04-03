@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Carregando from "../components/Carregando"
 
 import "./MeusFavoritos.css"
@@ -72,17 +75,20 @@ const MeusFavoritos = () => {
     
     /*================================================================================= */
 
-    //Armazenar o valor selecionado pelo usuário
+    //Armazenar o valor e o nome selecionado pelo usuário
     const [selectedId, setSelectedId] = useState(null);
-
-    const handleNameClick = (id) => {
+    const [selectedName, setSelectedName] = useState('');
+    
+    const handleNameClick = (id, name) => {
       if (selectedId === id) {
         // se clicar duas vezes, deseleciona o item
-        setSelectedId(null);
+        setSelectedId(null)
+        setSelectedName('')
         setButtaonExcluirDisabled(true)
       } else {
         // caso contrário, seleciona o item
         setSelectedId(id);
+        setSelectedName(name)
         console.log(id)
         setButtaonExcluirDisabled(false)
       }
@@ -103,8 +109,10 @@ const MeusFavoritos = () => {
           
         axios.request(options).then(function (response) {
             console.log(response.data);
+            toast.success(`${selectedName} excluido com sucesso!`)
         }).catch(function (error) {
             console.error(error);
+            toast.error(`Erro ao exluir ${selectedName}!`)
         });
 
         const newNames = names.filter(name => name.id !== selectedId);
@@ -114,6 +122,7 @@ const MeusFavoritos = () => {
   
     return (
         <div className="Container">
+            <ToastContainer />
             {loading ? <Carregando/> :
                 names.length != 0 ?
                     <div>
@@ -129,7 +138,7 @@ const MeusFavoritos = () => {
                                         className={selectedId === name.id ? 'selected' : 'selectLi'}
                                         key={name.image_id} 
                                         value={name.image_id}
-                                        onClick={() => handleNameClick(name.id)}
+                                        onClick={() => handleNameClick(name.id, name.name)}
                                     >
                                         {name.name}
                                     </li>
@@ -158,7 +167,7 @@ const MeusFavoritos = () => {
                                     <li>Sua lista de favoritos está vazia!</li>
                                     <li>Procure alguns gatinhos fofinhos</li>
                                     <li>e adicione ele aqui.</li>
-                                    <li><img src="../img/empty-list-cat.png" height='200px' /></li>
+                                    <li><img src="../src/assets/empty-list-cat.png" height='200px' /></li>
                                 </ul>
                             </div>
                             <div className="botoes-Favoritos">

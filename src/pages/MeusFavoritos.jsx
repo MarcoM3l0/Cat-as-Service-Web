@@ -111,8 +111,7 @@ const MeusFavoritos = () => {
         setNames(newNames);
 
     }
-
-    
+  
     return (
         <div className="Container">
             {loading ? <Carregando/> :

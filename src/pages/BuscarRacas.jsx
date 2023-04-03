@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 
 import Carregando from "../components/Carregando"
@@ -9,11 +9,13 @@ import "./BuscarRacas.css"
 const apikey = import.meta.env.VITE_API_KEY
 const urlBusca = import.meta.env.VITE_SEARCH
 const urlFavourites = import.meta.env.VITE_FAVOURITES
+const urlImg = import.meta.env.VITE_SEARCH_IMG
 
 const BuscarRacas = () => {
 
     const [buttonBuscarDisabled, setButtonBuscarDisabled] = useState(true)
     const [buttoanFavoritoDisabled, setButtaonFavoritoDisabled] = useState(true)
+    const selectRef = useRef(null);
 
 
     /*Faz a comunicação com a API e traz os dados de cada raça de gato*/  
@@ -46,20 +48,37 @@ const BuscarRacas = () => {
     const [breedTemperament, setBreedTemperament] = useState('');
     const [breedOrigin, setBreedOrigin] = useState('');
     const [breedDescription, setBreedDescription] = useState('');
+    const [urlImgCat, setUrlImgCat] = useState('../img/Cat-on-computer.jpg');
+    const [id, setId] = useState('');
     var [controle, setControle] = useState(false);
     
 
     const handleSubmit = () =>{
 
         const options = {method: 'GET', url: `${urlBusca}/${breedId}`};
-
         axios.request(options).then(function (response) {
-            const {temperament, origin, description} = response.data;
+            const {id, temperament, origin, description} = response.data;
+            setId(id)
             setBreedTemperament(temperament);
             setBreedOrigin(origin);
             setBreedDescription(description);
             setControle(true);
             setButtaonFavoritoDisabled(false)
+        }).catch(function (error) {
+        console.error(error);
+        });
+
+
+        const optionsImg = {
+        method: 'GET',
+        url: urlImg,
+        params: {breed_ids: id}
+        };
+
+        axios.request(optionsImg).then(function (response) {
+            const data = response.data.map(({url}) => ({url}));
+            console.log(data)
+            setUrlImgCat(data)
         }).catch(function (error) {
         console.error(error);
         });
@@ -76,13 +95,19 @@ const BuscarRacas = () => {
               'Content-Type': 'application/json'
             },
             data: {image_id: breedId, sub_id: 'user-123'}
-          };
+        };
           
-          axios.request(options).then(function (response) {
+        axios.request(options).then(function (response) {
             console.log(response.data);
-          }).catch(function (error) {
+        }).catch(function (error) {
             console.error(error);
-          });
+        });
+
+        setControle(false)
+        setButtonBuscarDisabled(true)
+        setButtaonFavoritoDisabled(true)
+        setUrlImgCat('../img/Cat-on-computer.jpg')
+        selectRef.current.value = '';
 
     }
 
@@ -97,7 +122,7 @@ const BuscarRacas = () => {
                     <div className="container-busca">
                         <div className="cbx-buscar">
                             <label for="racas"><b>Raças do gato</b></label>
-                            <select onChange={handleSelectChange}>
+                            <select ref={selectRef} onChange={handleSelectChange}>
                                 <option value="">Selecione uma Raça</option>
                                 {breeds.map(breed => (
                                     <option key={breed.id} value={breed.id}>{breed.name}</option>
@@ -126,7 +151,7 @@ const BuscarRacas = () => {
                         </div>
                             
 
-                        <img className="image" src="../img/Cat-on-computer.jpg" height="210" width="360"/>
+                        <img className="image" src={urlImgCat} height="210" width="360"/>
 
                         </div>
                         <div className="botoes">
@@ -144,7 +169,7 @@ const BuscarRacas = () => {
                                 >
                                     Favoritar
                             </button>
-                        </div>
+                        </div> 
                 </div>
             }
         </div>

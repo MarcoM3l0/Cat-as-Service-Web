@@ -20,6 +20,30 @@
     gap: 10px;
 }
 
+.sem-resultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100px; /* Defina a altura que desejar */
+  }
+  
+.resultado{
+    width: 150vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+.resultado p {
+    margin: 5px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
 .cbx-buscar label{
     margin-right: 10px;
 }
@@ -33,12 +57,12 @@ button {
     font-size: inherit;
     cursor: pointer;
     outline: none;
-  }
+}
 
 .botoes{
     position: absolute;
-    top: 75%;
-    left: 45%;
+    top: 83%;
+    right: 420px;
 }
 
 .botoes button{
@@ -71,3 +95,10 @@ button {
 .btn-Voltar:hover, .btn-buscar:hover, .btn-Favoritar:hover{
     transform: scale(1.1);
 }
+
+.btn-disabled {
+    background-color: #ccc;
+    border-color: #999;
+    color: #999;
+    cursor: not-allowed;
+  }

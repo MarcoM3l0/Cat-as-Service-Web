@@ -14,7 +14,7 @@ function App() {
           <Route exact path='/meus-favoritos' Component={MeusFavoritos}/>
         </Routes>
       </BrowserRouter>
-      <p className='footerP'>→ @marco_m3l0 ←</p>
+      <p className='footerP'> @marco_m3l0 ;P</p>
     </div>
     
   )

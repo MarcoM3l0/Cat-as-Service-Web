@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Carregando from "../components/Carregando"
+import Cat_on_computer from "../assets/Cat-on-computer.jpg"
 
 import "./BuscarRacas.css"
 
@@ -52,7 +53,7 @@ const BuscarRacas = () => {
     const [breedTemperament, setBreedTemperament] = useState('');
     const [breedOrigin, setBreedOrigin] = useState('');
     const [breedDescription, setBreedDescription] = useState('');
-    const [urlImgCat, setUrlImgCat] = useState('../src/assets/Cat-on-computer.jpg');
+    const [urlImgCat, setUrlImgCat] = useState(Cat_on_computer);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     var [controle, setControle] = useState(false);
@@ -115,7 +116,7 @@ const BuscarRacas = () => {
         setControle(false)
         setButtonBuscarDisabled(true)
         setButtaonFavoritoDisabled(true)
-        setUrlImgCat('../src/assets/Cat-on-computer.jpg')
+        setUrlImgCat(Cat_on_computer)
         selectRef.current.value = '';
 
     }

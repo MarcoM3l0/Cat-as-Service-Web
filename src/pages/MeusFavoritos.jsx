@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Carregando from "../components/Carregando"
+import empty_list_cat from "../assets/empty-list-cat.png"
 
 import "./MeusFavoritos.css"
 
@@ -167,7 +168,7 @@ const MeusFavoritos = () => {
                                     <li>Sua lista de favoritos está vazia!</li>
                                     <li>Procure alguns gatinhos fofinhos</li>
                                     <li>e adicione ele aqui.</li>
-                                    <li><img src="../src/assets/empty-list-cat.png" height='200px' /></li>
+                                    <li><img src={empty_list_cat} height='200px' /></li>
                                 </ul>
                             </div>
                             <div className="botoes-Favoritos">

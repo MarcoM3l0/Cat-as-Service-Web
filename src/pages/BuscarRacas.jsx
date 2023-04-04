@@ -42,6 +42,7 @@ const BuscarRacas = () => {
     const handleSelectChange = (e) => {
         const value = e.target.value
         setBreedId(value);
+        setUrlImgCat(Cat_on_computer);
         setButtonBuscarDisabled(value === "");
         if(value === ""){
             setButtaonFavoritoDisabled(true)

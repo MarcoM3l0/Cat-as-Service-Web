@@ -120,6 +120,18 @@ const MeusFavoritos = () => {
         setNames(newNames);
 
     }
+
+    // define o limite de itens para exibir duas colunas
+    const [twoColumns, setTwoColumns] = useState(false);
+    const limiteItems = 13; 
+
+    useEffect(() => {
+        if (names.length > limiteItems) {
+        setTwoColumns(true);
+        } else {
+        setTwoColumns(false);
+        }
+    }, [names]);
   
     return (
         <div className="Container">
@@ -132,7 +144,7 @@ const MeusFavoritos = () => {
                         <hr />
 
                         <div className="container-favoritos">
-                            <div className="lista-favoritos">
+                            <div className={`lista-favoritos${twoColumns ? ' two-columns' : ''}`}>
                                 <ul>
                                     {names.map(name =>(
                                         <li

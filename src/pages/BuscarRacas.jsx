@@ -110,7 +110,7 @@ const BuscarRacas = () => {
             toast.success(`${name} adicionado com sucesso!`)
         }).catch(function (error) {
             console.error(error);
-            toast.error("Erro ao adicionar gato aos favoritos!")
+            toast.info(`Você já favoritou o ${name}!`)
         });
 
         setControle(false)

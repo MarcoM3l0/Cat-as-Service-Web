@@ -4,7 +4,7 @@
 }
 
 .Descricao-page{
-    color: rgb(32, 32, 32);
+    color: #202020;
     font-size: 17.5px;
     margin-left: 5px;
     padding: 6px;
@@ -48,6 +48,25 @@
     margin-right: 10px;
 }
 
+.cbx-buscar select{
+    background-color: #e2e1e1;;
+    color: #000000;
+    padding: 3px;
+    width: 170px;
+    border: none;
+    font-size: 15px;
+    box-shadow: 0 5px 25px #ffffff1a;;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.cbx-buscar select:hover{
+    background-color: #d6d4d4;
+}
+
+
 button {
     background: none;
     border: none;
@@ -75,9 +94,9 @@ button {
 
     appearance: none;
     background-color: #e2e1e1;
-    border: 1px solid rgba(27, 31, 35, 0.15);
+    border: 1px solid #1b1f2326;
     border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-shadow: #1b1f230a 0 1px 0, #ffffff40 0 1px 0 inset;
     box-sizing: border-box;
     color: #24292E;
     cursor: pointer;
@@ -97,7 +116,7 @@ button {
 }
 
 .btn-disabled {
-    background-color: #ccc;
+    background-color: #cccccc;
     border-color: #999;
     color: #999;
     cursor: not-allowed;
